@@ -1,10 +1,12 @@
 "use client";
 
-import type { PropsWithChildren } from "react";
+import { useState, type PropsWithChildren } from "react";
 import type { AppState } from "./app-context";
 import { AppContext } from "./app-context";
 
 export function AppProvider({ children }: PropsWithChildren): JSX.Element {
-  const context: AppState = { uploaded: false };
+  const [introDone, setIntroDone] = useState(false);
+
+  const context: AppState = { introDone, setIntroDone };
   return <AppContext.Provider value={context}>{children}</AppContext.Provider>;
 }
