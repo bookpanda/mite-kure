@@ -1,11 +1,5 @@
-import { Button, Header } from "ui";
+import { Home } from "../modules/Home";
 
 export default function Page(): JSX.Element {
-  return (
-    <>
-      <Header text="Web" />
-
-      <Button />
-    </>
-  );
+  return <Home />;
 }
