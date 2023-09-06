@@ -3,7 +3,6 @@
 import { Box, Flex } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import ReactPlayer from "react-player";
 import YouTubePlayer from "react-player/youtube";
 
 export function Youtube(): JSX.Element {
@@ -19,44 +18,45 @@ export function Youtube(): JSX.Element {
   const handleClick = (): void => {
     setPlaying(!playing);
   };
+  const playerWidth =
+    (imageRef.current ? imageRef.current.clientWidth : 200) * 0.72;
+  const playerHeight =
+    (imageRef.current ? imageRef.current.clientHeight : 100) * 0.8;
+  const offsetTop =
+    (imageRef.current ? imageRef.current.clientHeight : 100) * 0.1;
+  const offsetLeft =
+    (imageRef.current ? imageRef.current.clientWidth : 200) * 0.07;
   return (
     <Flex
-      backgroundColor="red"
-      height="100vh"
+      bgColor="black"
       onClick={handleClick}
       onKeyDown={handleClick}
       width="100vw"
     >
-      {/* {hasWindow ? (
-        <ReactPlayer playing={playing} url="./mite_kure.mp4" volume={1} />
-      ) : null} */}
       <Image
         alt="frame"
         height={1000}
         ref={imageRef}
         src="/green_screen.png"
-        style={{ zIndex: 100, objectFit: "cover", width: "100vw" }}
+        style={{ zIndex: 100, height: "100%", width: "100%" }}
         width={1000}
       />
-      <Box position="absolute" top="10vh" left="20vh">
+      <Box
+        bgColor="black"
+        height={playerHeight}
+        left={offsetLeft}
+        position="absolute"
+        top={offsetTop}
+        transform={`rotate(-4.5deg)`}
+        width={playerWidth}
+      >
         {hasWindow ? (
-          <ReactPlayer
-            config={{
-              youtube: {
-                playerVars: {
-                  showinfo: 0,
-                  controls: 0,
-                  rel: 0,
-                  modestbranding: 1,
-                  iv_load_policy: 3,
-                  fs: 0,
-                  loop: 1,
-                },
-              },
-            }}
+          <YouTubePlayer
             controls={false}
+            height="100%"
             playing={playing}
             url="https://www.youtube.com/watch?v=zO6rqiPSV2g"
+            width="100%"
           />
         ) : null}
       </Box>
