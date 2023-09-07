@@ -6,13 +6,14 @@ import ReactPlayer from "react-player";
 import { useAppContext } from "../../core/context/app-context";
 
 export function Intro(): JSX.Element {
-  const { setIntroDone, setStartYouTube } = useAppContext();
+  const { setIntroDone, setStartYouTube, introDone } = useAppContext();
   const [hasWindow, setHasWindow] = useState(false);
   const [playing, setPlaying] = useState(false);
   useEffect(() => {
     if (typeof window !== "undefined") {
       setHasWindow(true);
       setPlaying(true);
+      console.log("playing");
     }
   }, []);
 
@@ -29,6 +30,8 @@ export function Intro(): JSX.Element {
       bgColor="black"
       onClick={handleClick}
       onKeyDown={handleClick}
+      position={introDone ? "absolute" : "fixed"}
+      visibility={introDone ? "hidden" : "visible"}
       width="100vw"
     >
       {hasWindow ? (
