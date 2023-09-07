@@ -65,7 +65,7 @@ export function Home(): JSX.Element {
         />
       ) : null}
       <Text color="black" fontSize={h1} fontWeight="bold" mb="7vh">
-        MITE KURE Generator
+        見て くれ！ Generator
       </Text>
       <Flex gap="2vw" justify="center" mb="4vh" w="100%">
         <FormControl isInvalid={error} width="50%">
