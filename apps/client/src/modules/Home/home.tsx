@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 import { CopyIcon } from "@chakra-ui/icons";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { h1 } from "../../theme/font-sizes";
 import { Background } from "./background";
 
@@ -44,12 +44,14 @@ export function Home(): JSX.Element {
       <Background />
       <Flex
         alignItems="center"
+        backdropFilter="blur( 4px )"
+        bg="rgba( 255, 255, 255, 0.25 )"
+        borderRadius="10px"
+        boxShadow="0 8px 32px 0 rgba( 31, 38, 135, 0.37 )"
         flexDir="column"
-        // h="100vh"
+        h="40vh"
         justifyContent="center"
-        // w="100vw"
         p={{ sm: "5vw", lg: "7vw" }}
-        bgColor="white"
       >
         <Text color="black" fontSize={h1} fontWeight="bold" mb="7vh">
           見て くれ！ Generator
