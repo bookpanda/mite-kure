@@ -7,13 +7,13 @@ import YouTubePlayer from "react-player/youtube";
 import { useAppContext } from "../../core/context/app-context";
 
 export function Youtube(): JSX.Element {
-  const { url } = useAppContext();
+  const { url, introDone, startYouTube } = useAppContext();
   const [hasWindow, setHasWindow] = useState(false);
   const [playing, setPlaying] = useState(false);
   const imageRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    if (typeof window !== "undefined" && startYouTube) {
       setHasWindow(true);
       setPlaying(true);
     }
@@ -24,7 +24,7 @@ export function Youtube(): JSX.Element {
     return () => {
       clearTimeout(setOffClick);
     };
-  }, []);
+  }, [startYouTube]);
 
   const handleClick = (): void => {
     setPlaying(!playing);
@@ -36,7 +36,8 @@ export function Youtube(): JSX.Element {
       onClick={handleClick}
       onKeyDown={handleClick}
       overflow="hidden"
-      position="relative"
+      position={introDone ? "relative" : "absolute"}
+      visibility={introDone ? "visible" : "hidden"}
       width="100vw"
     >
       <Image

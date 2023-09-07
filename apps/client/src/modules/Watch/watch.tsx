@@ -6,15 +6,16 @@ import { Intro } from "../Intro";
 import { Youtube } from "../YouTube";
 
 export function Watch(): JSX.Element {
-  const { introDone, setIntroDone } = useAppContext();
+  const { setIntroDone, introDone, setStartYouTube } = useAppContext();
   useEffect(() => {
     setIntroDone(false);
-  }, [setIntroDone]);
+    setStartYouTube(false);
+  }, [setIntroDone, setStartYouTube]);
 
   return (
     <Flex alignItems="center" h="100vh" justifyContent="center" w="100vw">
-      {!introDone ? <Intro /> : <Youtube />}
-      {/* <Youtube /> */}
+      {!introDone && <Intro />}
+      <Youtube />
     </Flex>
   );
 }

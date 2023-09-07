@@ -5,6 +5,8 @@ export interface AppState {
   setIntroDone: (done: boolean) => void;
   url: string;
   setUrl: (url: string) => void;
+  startYouTube: boolean;
+  setStartYouTube: (start: boolean) => void;
 }
 
 export const AppContext = createContext<AppState>({
@@ -12,6 +14,8 @@ export const AppContext = createContext<AppState>({
   setIntroDone: () => null,
   url: "",
   setUrl: () => null,
+  startYouTube: false,
+  setStartYouTube: () => null,
 });
 
 export function useAppContext(): AppState {

@@ -6,7 +6,7 @@ import ReactPlayer from "react-player";
 import { useAppContext } from "../../core/context/app-context";
 
 export function Intro(): JSX.Element {
-  const { setIntroDone } = useAppContext();
+  const { setIntroDone, setStartYouTube } = useAppContext();
   const [hasWindow, setHasWindow] = useState(false);
   const [playing, setPlaying] = useState(false);
   useEffect(() => {
@@ -15,9 +15,15 @@ export function Intro(): JSX.Element {
       setPlaying(true);
     }
   }, []);
+
   const handleClick = (): void => {
     setPlaying(!playing);
   };
+
+  const handleEnd = (playedSeconds: number): void => {
+    if (playedSeconds > 4) setStartYouTube(true);
+  };
+
   return (
     <Flex
       bgColor="black"
@@ -31,6 +37,9 @@ export function Intro(): JSX.Element {
           height="100%"
           onEnded={() => {
             setIntroDone(true);
+          }}
+          onProgress={(progress) => {
+            handleEnd(progress.playedSeconds);
           }}
           playing={playing}
           url="./mite_kure.mp4"
