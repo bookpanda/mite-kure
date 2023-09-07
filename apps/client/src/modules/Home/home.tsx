@@ -1,20 +1,25 @@
 "use client";
-import { Flex } from "@chakra-ui/react";
-import { useEffect } from "react";
-import { useAppContext } from "../../core/context/app-context";
-import { Intro } from "../Intro";
-import { Youtube } from "../YouTube";
+import { Button, Flex, Input } from "@chakra-ui/react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export function Home(): JSX.Element {
-  const { introDone, setIntroDone } = useAppContext();
-  useEffect(() => {
-    setIntroDone(false);
-  }, [setIntroDone]);
-
+  const [url, setUrl] = useState("");
+  const router = useRouter();
+  const handleClick = (): void => {
+    router.push(`/watch?url=${url}`);
+  };
   return (
     <Flex alignItems="center" h="100vh" justifyContent="center" w="100vw">
-      {!introDone ? <Intro /> : <Youtube />}
-      {/* <Youtube /> */}
+      home
+      <Input
+        placeholder="YouTube URL"
+        value={url}
+        onChange={(e) => {
+          setUrl(e.target.value);
+        }}
+      />
+      <Button onClick={handleClick}>go</Button>
     </Flex>
   );
 }

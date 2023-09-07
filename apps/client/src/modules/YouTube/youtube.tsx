@@ -4,8 +4,10 @@ import { Box, Flex } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import YouTubePlayer from "react-player/youtube";
+import { useAppContext } from "../../core/context/app-context";
 
 export function Youtube(): JSX.Element {
+  const { url } = useAppContext();
   const [hasWindow, setHasWindow] = useState(false);
   const [playing, setPlaying] = useState(false);
   const imageRef = useRef<HTMLImageElement>(null);
@@ -63,7 +65,7 @@ export function Youtube(): JSX.Element {
             controls={false}
             height="100%"
             playing={playing}
-            url="https://www.youtube.com/watch?v=zO6rqiPSV2g"
+            url={url}
             width="100%"
           />
         ) : null}
