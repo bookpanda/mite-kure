@@ -36,7 +36,7 @@ export default function RootLayout({ children }: RootLayoutProps): JSX.Element {
       <link href="favicon/site.webmanifest" rel="manifest" />
       <meta content="#da532c" name="msapplication-TileColor" />
       <meta content="#ffffff" name="theme-color" />
-      <body>
+      <body style={{ overflow: "hidden" }}>
         <Analytics />
         <Providers>
           <AppProvider>
