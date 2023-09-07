@@ -17,13 +17,6 @@ export function Youtube(): JSX.Element {
       setHasWindow(true);
       setPlaying(true);
     }
-    const setOffClick = setTimeout(() => {
-      imageRef.current?.click();
-    }, 200);
-
-    return () => {
-      clearTimeout(setOffClick);
-    };
   }, [startYouTube]);
 
   const handleClick = (): void => {
@@ -61,7 +54,7 @@ export function Youtube(): JSX.Element {
         transform="rotate(-4.5deg)"
         width="78%"
       >
-        {hasWindow ? (
+        {hasWindow && startYouTube ? (
           <YouTubePlayer
             controls={false}
             height="100%"
