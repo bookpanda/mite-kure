@@ -15,20 +15,15 @@ export function Youtube(): JSX.Element {
     offsetTop: 0,
     offsetLeft: 0,
   });
-  const playerWidth =
-    (imageRef.current ? imageRef.current.clientWidth : 200) * 0.72;
-  const playerHeight =
-    (imageRef.current ? imageRef.current.clientHeight : 100) * 0.8;
-  const offsetTop =
-    (imageRef.current ? imageRef.current.clientHeight : 100) * 0.1;
-  const offsetLeft =
-    (imageRef.current ? imageRef.current.clientWidth : 200) * 0.07;
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       setHasWindow(true);
       setPlaying(true);
     }
+    const setOffClick = setTimeout(() => {
+      imageRef.current?.click();
+    }, 200);
 
     const checkInterval = setInterval(() => {
       if (typeof window !== "undefined") {
@@ -46,6 +41,7 @@ export function Youtube(): JSX.Element {
 
     return () => {
       clearInterval(checkInterval);
+      clearTimeout(setOffClick);
     };
   }, []);
 
@@ -58,6 +54,7 @@ export function Youtube(): JSX.Element {
       bgColor="black"
       onClick={handleClick}
       onKeyDown={handleClick}
+      position="relative"
       width="100vw"
     >
       <Image
@@ -65,7 +62,11 @@ export function Youtube(): JSX.Element {
         height={1000}
         ref={imageRef}
         src="/green_screen.png"
-        style={{ zIndex: 100, height: "100%", width: "100%" }}
+        style={{
+          zIndex: 100,
+          height: "100%",
+          width: "100%",
+        }}
         width={1000}
       />
       <Box
@@ -80,17 +81,10 @@ export function Youtube(): JSX.Element {
         {hasWindow ? (
           <YouTubePlayer
             controls={false}
-            // height="100%"
-            style={{
-              position: "absolute",
-              width: videoSize.current.width,
-              height: videoSize.current.height,
-              top: videoSize.current.offsetTop,
-              left: videoSize.current.offsetLeft,
-            }}
+            height="100%"
             playing={playing}
             url="https://www.youtube.com/watch?v=zO6rqiPSV2g"
-            // width="100%"
+            width="100%"
           />
         ) : null}
       </Box>
