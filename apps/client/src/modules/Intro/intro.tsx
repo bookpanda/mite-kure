@@ -13,7 +13,6 @@ export function Intro(): JSX.Element {
     if (typeof window !== "undefined") {
       setHasWindow(true);
       setPlaying(true);
-      console.log("playing");
     }
   }, []);
 
