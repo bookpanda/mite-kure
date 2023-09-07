@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { Watch } from "../../modules/Watch/watch";
+import { Watch } from "../../modules/Watch";
 import { useAppContext } from "../../core/context/app-context";
 
 export default function WatchPage(): JSX.Element {
