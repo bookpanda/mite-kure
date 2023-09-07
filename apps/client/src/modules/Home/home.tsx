@@ -14,6 +14,7 @@ export function Home(): JSX.Element {
   return (
     <Flex alignItems="center" h="100vh" justifyContent="center" w="100vw">
       {!introDone ? <Intro /> : <Youtube />}
+      {/* <Youtube /> */}
     </Flex>
   );
 }
